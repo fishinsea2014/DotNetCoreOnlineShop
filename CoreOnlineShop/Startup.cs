@@ -33,9 +33,10 @@ namespace CoreOnlineShop
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //ApplicationDbContext is a project defined class.
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer(Configuration["DefaultConnection"])
-                );
+                options => options.UseSqlServer(Configuration["DefaultConnection"]
+                ));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
