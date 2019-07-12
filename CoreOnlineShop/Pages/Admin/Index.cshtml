@@ -3,7 +3,26 @@
 @{
 }
 
+<div id="app">
+    <input type="number" @@change="alert('Change')"  v-model="price" />
+    <button v-on:click="togglePrice">Toggle Price</button>
+    <button v-on:click="getProducts">Getproducts</button>
+    <p v-show="showPrice">
+        {{price}}
+    </p>
+
+    <p v-if="!showPrice">
+        {{formatPrice}}
+    </p>
+
+    <div>
+        <p v-for="product in products">{{product.id}}-{{product.name}}-{{product.description}}</p>
+    </div>
+</div>
+
 @section scripts{
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <script src="~/js/main.js"></script>
 
 }

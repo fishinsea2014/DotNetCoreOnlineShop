@@ -17,7 +17,7 @@ namespace CoreOnlineShop.Controllers
         {
             _ctx = ctx;
         }
-        [HttpGet("product")]
+        [HttpGet("products")]
         public IActionResult GetProducts() => Ok(new GetProducts(_ctx).Do());
 
         [HttpGet("product/{id}")]
