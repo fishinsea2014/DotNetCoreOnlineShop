@@ -8,12 +8,15 @@ namespace ShopDomain.Models
 {
      public class Product
     {
-        [Key]
+        
         public int Id { get; set; }
         public string Name{ get; set; }
         public string Description { get; set; }
-        [Column(TypeName = "18,2")]
+        //[Column(TypeName = "18,2")]
         public decimal Value  { get; set; }
+
+        public ICollection<Stock> Stock { get; set; }
+
 
     }
 }

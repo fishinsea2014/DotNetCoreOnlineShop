@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreOnlineShop", "CoreOnlineShop\CoreOnlineShop.csproj", "{2D58A893-8031-45F1-99DE-F51D3B3D8312}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreOnlineShop", "CoreOnlineShop\CoreOnlineShop.csproj", "{2D58A893-8031-45F1-99DE-F51D3B3D8312}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopDomain", "ShopDomain\ShopDomain.csproj", "{F929D710-17A4-4A55-B7CA-5376C436033D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopDomain", "ShopDomain\ShopDomain.csproj", "{F929D710-17A4-4A55-B7CA-5376C436033D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Application", "ShopApplication\Shop.Application.csproj", "{570EA108-33BF-4DA1-B41A-3AA608AC618F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Application", "ShopApplication\Shop.Application.csproj", "{570EA108-33BF-4DA1-B41A-3AA608AC618F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Database", "Shop.Database\Shop.Database.csproj", "{4461ABFB-F636-4588-BADA-7DA0A81FB23E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Database", "Shop.Database\Shop.Database.csproj", "{4461ABFB-F636-4588-BADA-7DA0A81FB23E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

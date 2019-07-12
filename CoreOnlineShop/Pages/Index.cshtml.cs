@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Shop.Application.CreateProducts;
 using Shop.Database;
-using ShopApplication.GetProducts;
+using Shop.Application.Products;
+using Shop.Application.ProductsAdmin;
 
 namespace CoreOnlineShop.Pages
 {
@@ -20,13 +20,13 @@ namespace CoreOnlineShop.Pages
         }
 
         [BindProperty]
-        public Shop.Application.CreateProducts.ProductViewModel Product { get; set; }
+        public CreateProduct.ProductViewModel Product { get; set; } //create 
 
-        public IEnumerable<ShopApplication.GetProducts.ProductViewModel> Products { get; set; }
+        public IEnumerable<Shop.Application.Products.GetProducts.ProductViewModel> Products { get; set; }
 
         public void OnGet()
         {
-            Products = new GetProducts(_ctx).Do();
+            Products = new Shop.Application.Products.GetProducts(_ctx).Do();
 
         }
 
