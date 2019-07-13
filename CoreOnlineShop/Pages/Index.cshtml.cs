@@ -20,7 +20,7 @@ namespace CoreOnlineShop.Pages
         }
 
         [BindProperty]
-        public CreateProduct.ProductViewModel Product { get; set; } //create 
+        public CreateProduct.Request Product { get; set; } //create 
 
         public IEnumerable<Shop.Application.Products.GetProducts.ProductViewModel> Products { get; set; }
 

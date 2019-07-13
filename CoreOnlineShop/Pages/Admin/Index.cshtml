@@ -4,19 +4,24 @@
 }
 
 <div id="app">
-    <input type="number" @@change="alert('Change')"  v-model="price" />
-    <button v-on:click="togglePrice">Toggle Price</button>
-    <button v-on:click="getProducts">Getproducts</button>
-    <p v-show="showPrice">
-        {{price}}
-    </p>
-
-    <p v-if="!showPrice">
-        {{formatPrice}}
-    </p>
+    
+    <button v-on:click="getProducts">Getproducts</button>   
 
     <div>
-        <p v-for="product in products">{{product.id}}-{{product.name}}-{{product.description}}</p>
+        <p v-for="(product, index) in products">
+            {{product.id}}-{{product.name}}-{{product.description}}
+            <button @@click="editProduct(product, index)">Edit</button>
+            <button @@click="deleteProduct(product.id,index)">Remove</button>
+        </p>
+
+    </div>
+
+    <div>
+        <input v-model="productModel.name" />
+        <input v-model="productModel.description" />
+        <input v-model="productModel.value" />
+        <button @@click="createProduct" v-if="!productModel.id">Add New Product</button>
+        <button @@click="updateProduct" v-else>Update Product</button>
     </div>
 </div>
 

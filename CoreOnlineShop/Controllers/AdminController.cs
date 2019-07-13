@@ -23,17 +23,17 @@ namespace CoreOnlineShop.Controllers
         [HttpGet("product/{id}")]
         public IActionResult GetProduct( int id) => Ok(new GetProduct(_ctx).Do(id));
 
-        [HttpPost("product")]
-        public IActionResult CreateProducts(CreateProduct.ProductViewModel vm) 
-            => Ok(new CreateProduct(_ctx).Do(vm));
+        [HttpPost("products")]
+        public async Task<IActionResult> CreateProduct([FromBody]CreateProduct.Request vm) 
+            => Ok(await new CreateProduct(_ctx).Do(vm));
 
         [HttpDelete("product/{id}")]
-        public IActionResult DeleteProducts(int id) => Ok(new DeleteProduct(_ctx).Do(id));
+        public async Task<IActionResult> DeleteProducts(int id) => Ok(await new DeleteProduct(_ctx).Do(id));
 
 
         [HttpPut("product")]
-        public IActionResult UpdateProducts(UpdateProduct.ProductViewModel vm)
-            => Ok(new UpdateProduct(_ctx).Do(vm));
+        public async Task<IActionResult> UpdateProducts([FromBody]UpdateProduct.Request vm)
+            => Ok(await new UpdateProduct(_ctx).Do(vm));
 
     }
 }
