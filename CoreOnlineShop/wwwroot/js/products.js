@@ -1,66 +1,18 @@
-﻿Vue.component('product-manager', {
-    template: `
-        <div v-if="!editing">
-                <button class="button" @click="newProduct">Add Product</button>
-                <table class="table">
-                    <tr>
-                        <th>Id</th>
-                        <th>Product</th>
-                        <th>Value</th>
-                    </tr>
-                    <tr v-for="(product, index) in products">
-                        <td>{{product.id}}</td>
-                        <td>{{product.name}}</td>
-                        <td>{{product.description}}</td>
-                        <td><button class="button" @click="editProduct(product, index)">Edit</button></td>
-                        <td><button class="button" @click="deleteProduct(product.id,index)">Remove</button></td>
-
-
-                    </tr>
-                </table>
-
-            </div>
-
-            <div v-else>
-                <div class="field">
-                    <label class="label">Name</label>
-                    <div class="control">
-                        <input class="input" v-model="productModel.name" />
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label class="label">Description</label>
-                    <div class="control">
-                        <input class="input" v-model="productModel.description" />
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label class="label">Value</label>
-                    <div class="control">
-                        <input class="input" v-model="productModel.value" />
-                    </div>
-                </div>
-                <button class="button is-success" @click="createProduct" v-if="!productModel.id">Add New Product</button>
-                <button class="button is-warning" @click="updateProduct" v-else>Update Product</button>
-                <button class="button" @click="cancelProduct" v-if="editing">Cancel</button>
-
-            </div>
-            `,
-    data() {
-        return {
-            editing: false,
-            loading: false,
-            objectIndex: 0,
-            productModel: {
-                id: 0,
-                name: "Product Name",
-                description: "Product Description",
-                value: 3.66
-            },
-            products: []
-        };
+﻿var app = new Vue({
+    el: '#app',    
+    data:{
+        menu: 0,        
+        editing: false,
+        loading: false,
+        objectIndex: 0,
+        productModel: {
+            id: 0,
+            name: "Product Name",
+            description: "Product Description",
+            value: 3.66
+        },
+        products: []
+        
     },
     mounted() {
         this.getProducts();
@@ -171,4 +123,4 @@
     computed: {
 
     }
-})
+});
