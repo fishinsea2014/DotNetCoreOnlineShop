@@ -3,31 +3,35 @@
 @{
 }
 
-<div id="app">
-    
-    <button v-on:click="getProducts">Getproducts</button>   
+<div id="app" class="container">
+    <div class="columns">
+        <div class="column is-3">
+            <div class="menu">
+                <p class="menu-label">Admin Menu</p>
+                <ul class="menu-list">
+                    <li><a @@click="menu=0">Product</a></li>
+                    <li><a @@click="menu=1">Orders</a></li>
+                    <li><a @@click="menu=2">Stock</a></li>
+                </ul>
 
-    <div>
-        <p v-for="(product, index) in products">
-            {{product.id}}-{{product.name}}-{{product.description}}
-            <button @@click="editProduct(product, index)">Edit</button>
-            <button @@click="deleteProduct(product.id,index)">Remove</button>
-        </p>
+            </div>
+        </div>
 
+        <div class="column is-9">
+            <product-manager v-if="menu===0"></product-manager>
+            <p v-else-if="menu===1">Orders</p>
+            <p v-else-if="menu===2">Stock</p>
+        </div>
     </div>
 
-    <div>
-        <input v-model="productModel.name" />
-        <input v-model="productModel.description" />
-        <input v-model="productModel.value" />
-        <button @@click="createProduct" v-if="!productModel.id">Add New Product</button>
-        <button @@click="updateProduct" v-else>Update Product</button>
-    </div>
+
+
 </div>
 
 @section scripts{
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <script src="~/js/product-component.js"></script>
     <script src="~/js/main.js"></script>
 
 }
