@@ -19,9 +19,17 @@ namespace CoreOnlineShop.Pages
         }
 
         public GetProduct.ProductViewModel Product { get; set; }
-        public void OnGet(string name)
+        public IActionResult OnGet(string name)
         {
             Product = new GetProduct(_ctx).Do(name.Replace("-"," "));
+            if (Product == null)
+            {
+                return RedirectToPage("Index");
+            }
+            else
+            {
+                return Page();
+            }
         }
     }
 }
