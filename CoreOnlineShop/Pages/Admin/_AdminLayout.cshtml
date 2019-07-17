@@ -11,13 +11,12 @@
     </environment>
     <environment include="Production">
         <link href="~/lib/bulma-0.7.5/css/bulma.min.css" rel="stylesheet" />
-        <script src="~/js/site.js"></script>
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <h3 class="has-text-centered">Admin Panel</h3>
+        <h3 class="title has-text-centered">Admin Panel</h3>
         <a asp-page="/Index">Home</a>
     </header>
 
@@ -34,7 +33,7 @@
 
                     <p class="menu-label"></p>
                     <ul class="menu-list">
-                        <li><a asp-page="/Index">Back to Main</a></li>                        
+                        <li><a asp-page="/Index">Back to Main</a></li>
                     </ul>
 
                 </div>
@@ -47,7 +46,6 @@
     </div>
 
     <div class="container body-content">
-        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
         </main>
     </div>
@@ -58,14 +56,8 @@
         </div>
     </footer>
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    </environment>
-    <environment exclude="Development">
-
-    </environment>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
