@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Shop.Database;
 using Shop.Application.Products;
+using Microsoft.AspNetCore.Http;
 
 namespace CoreOnlineShop.Pages
 {
@@ -17,7 +18,7 @@ namespace CoreOnlineShop.Pages
             _ctx = ctx;
 
         }
-
+        
         public GetProduct.ProductViewModel Product { get; set; }
         public IActionResult OnGet(string name)
         {
@@ -31,5 +32,24 @@ namespace CoreOnlineShop.Pages
                 return Page();
             }
         }
+
+        #region Test for utilising session
+        [BindProperty]
+        public Test ProductTest { get; set; }
+        public class Test
+        {
+            public string Id { get; set; }
+        }
+
+        public IActionResult OnPost()
+        {
+            var current_id = HttpContext.Session.GetString("id");
+            HttpContext.Session.SetString("id", ProductTest.Id);
+            return RedirectToPage("Index");
+        } 
+        #endregion
+
+
+
     }
 }
