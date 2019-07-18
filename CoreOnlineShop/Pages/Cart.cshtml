@@ -4,5 +4,10 @@
 }
 
 <div>
-    <p>@Model.Cart.Name @Model.Cart.Value @Model.Cart.Qty @Model.Cart.StockId</p>
+    @foreach (var product in Model.Cart)
+    {
+        <p>@product.Name - @product.Value - @product.Qty @product.StockId</p>
+        <hr />
+    }
+
 </div>

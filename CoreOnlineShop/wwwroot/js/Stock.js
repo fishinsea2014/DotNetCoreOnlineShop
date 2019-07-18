@@ -48,14 +48,13 @@
             this.loading = true;
             axios.put('/Admin/stocks/',
                 {
-                    stock: this.selectedProduct.stock.map(x =>
-                    {
+                    stock: this.selectedProduct.stock.map(x => {
                         return {
                             id: x.id,
                             description: x.description,
                             qty: x.qty,
                             productId: this.selectedProduct.id
-                         };
+                        };
                     })
                 })
                 .then(res => {
@@ -74,7 +73,7 @@
             axios.post('/Admin/stocks/', this.newStock)
                 .then(res => {
                     console.log(res);
-                    this.selectedProduct.stock.push(res.data); 
+                    this.selectedProduct.stock.push(res.data);
                     this.loading = false;
                 })
                 .catch(err => {
@@ -90,4 +89,4 @@
 
         }
     }
-})
+});
