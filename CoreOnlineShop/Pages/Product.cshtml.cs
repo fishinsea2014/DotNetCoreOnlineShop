@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Shop.Database;
 using Shop.Application.Products;
 using Microsoft.AspNetCore.Http;
+using Shop.Application.Cart;
 
 namespace CoreOnlineShop.Pages
 {
@@ -35,7 +36,7 @@ namespace CoreOnlineShop.Pages
 
         #region Test for utilising session
         [BindProperty]
-        public Test ProductTest { get; set; }
+        public AddToCart.Request CartViewModel { get; set; }
         public class Test
         {
             public string Id { get; set; }
@@ -43,9 +44,8 @@ namespace CoreOnlineShop.Pages
 
         public IActionResult OnPost()
         {
-            var current_id = HttpContext.Session.GetString("id");
-            HttpContext.Session.SetString("id", ProductTest.Id);
-            return RedirectToPage("Index");
+            new AddToCart(HttpContext.Session).Do(CartViewModel);
+            return RedirectToPage("Cart");
         } 
         #endregion
 
