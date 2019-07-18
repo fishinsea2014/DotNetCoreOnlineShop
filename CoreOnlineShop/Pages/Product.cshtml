@@ -21,6 +21,6 @@
             <input asp-for="CartViewModel.Qty" />
             <button type="submit">Submit</button>
         </form>
-    </div>
-    
+    </div>    
 </div>
+@await  Component.InvokeAsync("Cart")
