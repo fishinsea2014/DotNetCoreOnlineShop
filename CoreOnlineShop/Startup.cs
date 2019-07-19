@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shop.Database;
+using Stripe;
 
 namespace CoreOnlineShop
 {
@@ -44,6 +45,9 @@ namespace CoreOnlineShop
                 option.Cookie.Name = "Cart";
                 option.Cookie.MaxAge = TimeSpan.FromDays(635);
             });
+
+            //Setup for Stripe payment platform.
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
