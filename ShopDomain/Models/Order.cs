@@ -22,6 +22,6 @@ namespace ShopDomain.Models
         public string PostCode { get; set; } 
         #endregion
 
-        public ICollection<OrderProduct> OrderProducts { get; set; }
+        public ICollection<OrderStock> OrderStocks { get; set; }
     }
 }
