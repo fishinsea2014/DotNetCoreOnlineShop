@@ -42,7 +42,7 @@ namespace CoreOnlineShop.Pages.Checkout
             var customers = new CustomerService();
             var charges = new ChargeService();
 
-            var CartOrder = new GetOrder(HttpContext.Session, _ctx).Do();
+            var CartOrder = new Shop.Application.Cart.GetOrder(HttpContext.Session, _ctx).Do();
 
             var customer = customers.Create(new CustomerCreateOptions
             {
@@ -63,7 +63,7 @@ namespace CoreOnlineShop.Pages.Checkout
             //Create order
             await new CreateOrder(_ctx).Do(new CreateOrder.Request
             {
-                stripeReference = charge.OrderId,
+                stripeReference = charge.Id,
 
                 FirstName = CartOrder.CustomerInformation.FirstName,
                 LastName = CartOrder.CustomerInformation.LastName,
