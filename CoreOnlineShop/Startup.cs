@@ -43,7 +43,7 @@ namespace CoreOnlineShop
             services.AddSession(option =>
             {
                 option.Cookie.Name = "Cart";
-                option.Cookie.MaxAge = TimeSpan.FromDays(635);
+                option.Cookie.MaxAge = TimeSpan.FromMinutes(20);
             });
 
             //Setup for Stripe payment platform.
