@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -39,6 +40,24 @@ namespace CoreOnlineShop
                 options => options.UseSqlServer(Configuration["DefaultConnection"]
                 ));
 
+            #region User Identity and authorisation
+            //Utilise MS identity service, create the user object.
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                //Set the constraint of the password
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddAuthorization(options => {
+                options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
+                options.AddPolicy("Manager", policy => policy.RequireClaim("Manager"));
+
+            });
+            #endregion
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSession(option =>
             {
@@ -65,9 +84,13 @@ namespace CoreOnlineShop
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseCookiePolicy();
+
             app.UseSession();
 
+            //Utilise identification
+            app.UseAuthentication();
 
             app.UseMvc();
         }
