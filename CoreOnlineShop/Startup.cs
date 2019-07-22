@@ -42,23 +42,37 @@ namespace CoreOnlineShop
 
             #region User Identity and authorisation
             //Utilise MS identity service, create the user object.
-            services.AddDefaultIdentity<IdentityUser>(options =>
-            {
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+             {
                 //Set the constraint of the password
                 options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 6;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-            })
+                 options.Password.RequiredLength = 6;
+                 options.Password.RequireNonAlphanumeric = false;
+                 options.Password.RequireUppercase = false;
+             })
             .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+            });
+
             services.AddAuthorization(options => {
-                options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
-                options.AddPolicy("Manager", policy => policy.RequireClaim("Manager"));
+                options.AddPolicy("Admin", policy => policy.RequireClaim("Role","Admin"));
+                options.AddPolicy("Manager", policy => policy.RequireClaim("Role","Manager"));
 
             });
             #endregion
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services
+                .AddMvc()
+                .AddRazorPagesOptions(options =>
+                {
+                    //Adds a Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter to all pages under
+                    //the specified folder.
+                    options.Conventions.AuthorizeFolder("/Admin");
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSession(option =>
             {
                 option.Cookie.Name = "Cart";
@@ -92,7 +106,10 @@ namespace CoreOnlineShop
             //Utilise identification
             app.UseAuthentication();
 
-            app.UseMvc();
+            //app.UseMvc();
+
+            //Fix the log out didn't assign to the account controller.
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
