@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopDomain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,6 @@ namespace ShopDomain.Models
         public string OrderRef { get; set; }
         public string StripeReference { get; set; }
 
-
         #region Customer Information
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -21,6 +21,8 @@ namespace ShopDomain.Models
         public string City { get; set; }
         public string PostCode { get; set; } 
         #endregion
+
+        public OrderStatus Status { get; set; }
 
         public ICollection<OrderStock> OrderStocks { get; set; }
     }
