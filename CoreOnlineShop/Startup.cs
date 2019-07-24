@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Application.UsersAdmin;
 using Shop.Database;
 using Stripe;
 
@@ -77,6 +78,7 @@ namespace CoreOnlineShop
                     //Adds a Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter to all pages under
                     //the specified folder.
                     options.Conventions.AuthorizeFolder("/Admin");
+                    options.Conventions.AuthorizePage("/Admin/ConfigUsers","Admin");
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSession(option =>
@@ -87,6 +89,9 @@ namespace CoreOnlineShop
 
             //Setup for Stripe payment platform.
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
+
+            //Inject Shop.Application.UsersAdmin.createuser
+            services.AddTransient<CreateUser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

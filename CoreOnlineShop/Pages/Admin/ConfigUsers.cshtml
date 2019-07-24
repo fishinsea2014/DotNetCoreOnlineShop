@@ -1,0 +1,21 @@
+﻿@page
+@model CoreOnlineShop.Pages.Admin.ConfigUsersModel
+@{
+    ViewData["Title"] = "ConfigUsers";
+    Layout = "~/Pages/Admin/_AdminLayout.cshtml";
+}
+
+<h1>ConfigUsers</h1>
+
+
+<div id="app" class="container">
+    <input v-model="username"/>
+    <button @@click="createUser()">Create User</button>
+
+</div>
+
+@section scripts{
+    <script src="~/js/Users.js"></script>
+
+}
+
