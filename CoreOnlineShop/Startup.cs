@@ -91,7 +91,9 @@ namespace CoreOnlineShop
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
 
             //Inject Shop.Application.UsersAdmin.createuser
-            services.AddTransient<CreateUser>();
+            //Inject the class in Application.ServiceRegister, which is called by services.
+            //remove--services.AddTransient<CreateUser>();
+            services.AddApplicationServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
