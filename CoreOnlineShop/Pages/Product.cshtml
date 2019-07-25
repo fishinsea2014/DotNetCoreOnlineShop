@@ -1,7 +1,7 @@
 ﻿@page "{name}"
 @model CoreOnlineShop.Pages.ProductModel
 @{
-    
+
 }
 
 
@@ -10,7 +10,7 @@
         <div class="columns container">
             <div class="column is-6">
                 <figure class="image">
-                    <img src="~/images/sample.jpg"  alt="Alternate Text" />
+                    <img src="~/images/sample.jpg" alt="Alternate Text" />
                 </figure>
             </div>
             <div class="column is-6">
@@ -40,10 +40,13 @@
                                 <div class="field-body">
                                     <div class="field is-narrow control">
                                         <div class="select">
-                                            <select asp-for="CartViewModel.StockId">
+                                            <select asp-for="CartViewModel.StockId"
+                                                    onchange="toggleStock(event)">
                                                 @foreach (var s in Model.Product.Stock)
                                                 {
-                                                    <option value="@s.Id">@s.Description</option>
+                                                    bool disabled = s.Qty <= 0;
+
+                                                    <option value="@s.Id" disabled="@disabled">@s.Description</option>
                                                 }
                                             </select>
                                         </div>
@@ -59,6 +62,16 @@
                                     <div class="field is-narrow control">
                                         <input class="control input" asp-for="CartViewModel.Qty" />
                                     </div>
+                                    @foreach (var stock in Model.Product.Stock)
+                                    {
+                                        if (stock.Qty <= 10)
+                                        {
+                                            <p class="help is-danger is-hidden low-stock" id="low-stock-@stock.Id">
+                                                @(stock.Qty == 0 ? "Out of stock" : "Low stock")
+                                            </p>
+
+                                        }
+                                    }
                                 </div>
                             </div>
                             <div class="field is-horizontal">
@@ -81,5 +94,22 @@
     </div>
 </div>
 
-
-@await  Component.InvokeAsync("Cart")
+<script>
+    var toggleStock = function (e) {
+        console.log(e);
+        var stockToHide = document.querySelectorAll('.low-stock');
+        stockToHide.forEach(function (e) {
+            e.classList.add('is-hidden');
+        })
+        showLowStock(e.target.value);
+        //var stockToShow = document.getElementById('low-stock-' + e.target.value);
+        //stockToShow.classList.remov
+    }
+    var showLowStock = function (id) {
+        var stockToShow = document.getElementById('low-stock-' + id);
+        if (stockToShow !== null || stockToShow != undefined) {
+            stockToShow.classList.remove('is-hidden');
+        }
+    }
+    showLowStock(document.getElementById('CartViewModel_StockId').value);
+</script>
