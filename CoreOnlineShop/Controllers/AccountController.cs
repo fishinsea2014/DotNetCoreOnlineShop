@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreOnlineShop.Controllers
 {
     [Route("[controller]")]
-    [Authorize(Policy = "Admin")]
+    //[Authorize(Policy = "Admin")]
     public class AccountController : Controller
     {
         private SignInManager<IdentityUser> _signInManager;

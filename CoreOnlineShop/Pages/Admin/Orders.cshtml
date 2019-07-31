@@ -5,21 +5,41 @@
     Layout = "~/Pages/Admin/_AdminLayout.cshtml";
 }
 
-<h1>Orders</h1>
+<h1 class="title">Processing orders</h1>
 <div id="app">
     <div v-if="selectedOrder===null">
-        <div class="tabs is-centered">
+        <div  class="tabs is-left is-large is-toggle is-boxed">
             <ul>
-                <li v-bind="{'is-active':status === 0}"><a @@click="status = 0">Pending</a></li>
-                <li v-bind="{'is-active':status === 1}"><a @@click="status = 1">Packed</a></li>
-                <li v-bind="{'is-active':status === 2}"><a @@click="status = 2">Shipped</a></li>
+                <li :class="{'is-active':status===0}" v-bind="{'is-active':status === 0}"><a @@click="status = 0">Pending</a></li>
+                <li :class="{'is-active':status===1}" v-bind="{'is-active':status === 1}"><a @@click="status = 1">Packed</a></li>
+                <li :class="{'is-active':status===2}" v-bind="{'is-active':status === 2}"><a @@click="status = 2">Shipped</a></li>
             </ul>
-            <div v-if="orders.length >0">
-                <p v-for="order in orders">
-                    <a @@click="selectOrder(order.id)">{{order.orderRef}}--{{order.email}}</a>
-                </p>
-            </div>
+
         </div>
+        <table class="table"></a>
+            <thead>
+                <tr class="thead-dark">
+                    <th>
+                        Order NO.
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                </tr>
+            </thead>
+            <tbody v-if="orders.length >0">
+                <tr v-for="order in orders">
+                    <td>
+                        <a @@click="selectOrder(order.id)">{{order.orderRef}}</a>
+                    </td>
+                    <td>
+                        <p>{{order.email}}</p>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        
     </div>
     <div v-else>
         <p>
