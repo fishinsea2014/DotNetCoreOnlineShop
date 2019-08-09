@@ -4,5 +4,5 @@ The main functions including：
  - Products management
  - Order and pay
  - Users management
- - Stock management
+ - Stock management  
 It utilises c#, Stripe.net, EF, Javascript, Axios, Vue,  JQuery and bulma.
